@@ -195,3 +195,5 @@
 2015-07-16 20:35:39,059 - root - INFO - apache:flow_num:0 flow_rate:0.0 extract_rate:24.7
 2015-07-16 20:35:41,220 - root - INFO - phpchina:flow_num:0 flow_rate:0.0 extract_rate:6248.2
 2015-07-16 20:35:43,644 - root - INFO - dewen_question:flow_num:0 flow_rate:0.0 extract_rate:1437.7
+2015-07-16 21:28:38,398 - root - INFO - time.struct_time(tm_year=2015, tm_mon=7, tm_mday=16, tm_hour=21, tm_min=28, tm_sec=38, tm_wday=3, tm_yday=197, tm_isdst=0)
+2015-07-16 21:28:40,667 - root - INFO - csdn_ask:flow_num:0 flow_rate:0.0 extract_rate:2038.7

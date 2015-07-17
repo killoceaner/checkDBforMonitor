@@ -51,15 +51,15 @@ websiteInfo = {'openhub_project':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.
 #for run
 """
 sourceDB={'host':"192.168.80.104","user":"influx","passwd":"influx1234","port":3306,"extractDB":"extract_result","crawlerDB":"pages"}
-targerDB={'host':"192.168.80.130","user":"trustie","passwd":"1234","port":3306,"database":"ossean_production"}
+targetDB={'host':"192.168.80.130","user":"trustie","passwd":"1234","port":3306,"database":"ossean_production"}
 """
 #for test
 
 sourceDB={"host":'localhost',"user":'root',"passwd":'root',"port":3306,"extractDB":'test_db',"crawlerDB":"pages"}
-targerDB={"host":'localhost',"user":'root',"passwd":'root',"port":3306,"database":'test_db'}
+targetDB={"host":'localhost',"user":'root',"passwd":'root',"port":3306,"database":'test_db'}
 
 SourceConn = MySQLdb.connect(host=sourceDB["host"],user=sourceDB["user"],passwd=sourceDB["passwd"],port=sourceDB["port"])
-TargetConn = MySQLdb.connect(host=targerDB["host"],user=targerDB["user"],passwd=targerDB["passwd"],port=sourceDB["port"])
+TargetConn = MySQLdb.connect(host=targetDB["host"],user=targetDB["user"],passwd=targetDB["passwd"],port=sourceDB["port"])
 '''
 SourceConn = MySQLdb.connect(host='localhost',user='root',passwd='root',port=3306)
 TargetConn = MySQLdb.connect(host='localhost',user='root',passwd='root',port=3306)
@@ -97,9 +97,9 @@ def checkSourceDB(sql ,value='' ,flag=''):
     SourceConn.commit()
     return result
 
-def checkTargerDB(sql ,value ):
+def checktargetDB(sql ,value ):
     cur = SourceConn.cursor()
-    SourceConn.select_db(targerDB["database"])
+    SourceConn.select_db(targetDB["database"])
     count = cur.execute(sql,value)
     #count = cur.executemany(sql,value)
     print count
@@ -110,7 +110,7 @@ def checkTargerDB(sql ,value ):
 
 def updateTargetDB(sql,*value):
     cur = TargetConn.cursor()
-    TargetConn.select_db(targerDB["database"])
+    TargetConn.select_db(targetDB["database"])
     count = cur.execute(sql,value)
     TargetConn.commit()
     return count
@@ -152,8 +152,8 @@ def main():
         #*************************************calculate extract_rate
         print dicTable[name]
         crawlerSum = list(checkSourceDB(querSqlOfCrawlerSum , dicTable[name], "crawler"))
-        extractSum = list(checkTargerDB(querySqlOfExtractSUM, name ))
-        weekcrawler = list(checkTargerDB(querySqlOfWeekCrawler , name))
+        extractSum = list(checktargetDB(querySqlOfExtractSUM, name ))
+        weekcrawler = list(checktargetDB(querySqlOfWeekCrawler , name))
         websiteSum[name] = extractSum
         if crawlerSum[0] == None:
             crawlerSum[0] = 0
@@ -196,7 +196,7 @@ def main():
 
 def timer(n):
     while True:
-        localTime = time.localtime();
+        localTime = time.localtime()
         logger.info(localTime)
         main()
         time.sleep(n)
