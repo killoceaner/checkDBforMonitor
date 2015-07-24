@@ -5,7 +5,6 @@ from email.mime.text import MIMEText
 from email.header import Header
 import  time
 import EmailHandler
-import  MySQLdb
 import time
 '''
 sender = 'nudt_houxiang@163.com'
@@ -56,16 +55,10 @@ result = cur.fetchone()
 SourceConn.commit()
 """
 '''
-'''
+
 cur_time = time.strftime("%Y/%m/%d/%H"+":"+"%M")
 
-websiteInfo = {'openhub_project':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},'csdn_ask':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},'csdn_blogs':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},
-               'csdn_topics':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},'cnblog_news':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},'cnblog_question':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},
-               'dewen_question':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0}, 'freecode_projects':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},'iteye_ask':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},
-               'oschina_project':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},'oschina_question':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},'sourceforge_project':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},
-               'stackoverflow_q':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},'51cto_blog':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},'codeproject':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},'lupaworld':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},
-               'iteye_blog':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},'gna':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},'apache':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},'phpchina':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},'softpedia':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},
-               'linuxtone':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},'slashdot':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},'neitui':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0},'lagou':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0}}
+websiteInfo = {'openhub_project':{'extract_rate':0.0,'flow_num':0,'flow_rate':0.0,'weekcrawler':0,'crawler_sum':0}}
 
 for name , information in websiteInfo.items():
     flow_num = information['flow_num']
@@ -80,17 +73,7 @@ for name , information in websiteInfo.items():
         emailHandler = EmailHandler.Email(content,cur_time)
         emailHandler.set_desAddr("450717607@qq.com")
         emailHandler.send_email()
-    elif extract_rate <= 0.7:
-        content = "the website"+":"+name+" extract is geting wrong ,the extract rate is too low , the charge of extract is zhangfang , please fix it ...... "
-        emailHandler = EmailHandler.Email(content,cur_time)
-        emailHandler.set_desAddr("450717607@qq.com")
-        emailHandler.send_email()
-    elif crawlerSum == 0 :
-        content = "the webiste"+":"+name+" crawler is getting wrong ,sum of crawler for this week is zero ,the charge of craweler is gyiang and lizhixing , please fix it ......."
-        emailHandler = EmailHandler.Email(content,cur_time)
-        emailHandler.set_desAddr("450717607@qq.com")
-        emailHandler.send_email()
-'''
+
 
 
 
